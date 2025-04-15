@@ -41,6 +41,6 @@ jobs:
           provenance: false
           push: true
           tags: |
-            ghcr.io/DiegoHinA/keda-celery-scaler:latest
-            ghcr.io/DiegoHinA/keda-celery-scaler:${{ github.ref_name }}
+            ghcr.io/diegohina/keda-celery-scaler:latest
+            ghcr.io/diegohina/keda-celery-scaler:${{ github.ref_name }}
 
