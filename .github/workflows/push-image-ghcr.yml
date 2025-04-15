@@ -41,7 +41,7 @@ jobs:
           provenance: false
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ github.repository }}:latest
-            ${{ env.REGISTRY }}/${{ github.repository }}:${{ github.ref_name }}
+            ${{ env.REGISTRY }}/diegohina:latest
+            ${{ env.REGISTRY }}/diegohina:${{ github.ref_name }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
