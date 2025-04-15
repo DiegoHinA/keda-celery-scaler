@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/klippa-app/keda-celery-scaler/brokers"
-	pb "github.com/klippa-app/keda-celery-scaler/externalscaler"
-	"github.com/klippa-app/keda-celery-scaler/workers"
+	"github.com/DiegoHinA/keda-celery-scaler/brokers"
+	pb "github.com/DiegoHinA/keda-celery-scaler/externalscaler"
+	"github.com/DiegoHinA/keda-celery-scaler/workers"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
@@ -29,24 +29,22 @@ func (e *ExternalScaler) IsActive(ctx context.Context, scaledObject *pb.ScaledOb
 		queue = "celery"
 	}
 
-	activationLoadValue := int64(0)
-	activationLoadValueString := scaledObject.ScalerMetadata["activationLoadValue"]
-	if activationLoadValueString != "" {
-		activationLoadValueParsed, err := strconv.ParseInt(activationLoadValueString, 10, 64)
-		if err != nil {
-			return nil, status.Error(codes.InvalidArgument, fmt.Sprintf("could not parse activationLoadValue into an integer: %s", err.Error()))
-		}
-
-		activationLoadValue = activationLoadValueParsed
-	}
-
-	load, err := getLoad(ctx, queue)
+	// Get task count information
+	totalWorkersAvailable, totalActiveTasks := workers.GetQueueWorkers(queue)
+	queueLength, err := brokers.GetQueueLength(ctx, queue)
 	if err != nil {
 		return nil, status.Error(codes.Internal, err.Error())
 	}
 
+	// Check if there are any tasks at all (active or queued)
+	hasTasks := totalActiveTasks > 0 || queueLength > 0
+	
+	log.Debugf("IsActive for queue %s: workers: %d, active tasks: %d, queue length: %d, hasTasks: %t", 
+		queue, totalWorkersAvailable, totalActiveTasks, queueLength, hasTasks)
+	
+	// Return true only if there are tasks
 	return &pb.IsActiveResponse{
-		Result: load >= activationLoadValue,
+		Result: hasTasks,
 	}, nil
 }
 
