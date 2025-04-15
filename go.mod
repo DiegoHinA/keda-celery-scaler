@@ -1,4 +1,4 @@
-module github.com/klippa-app/keda-celery-scaler
+module github.com/DiegoHinA/keda-celery-scaler
 
 go 1.19
 

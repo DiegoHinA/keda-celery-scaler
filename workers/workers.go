@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/klippa-app/keda-celery-scaler/celery"
+	"github.com/DiegoHinA/keda-celery-scaler/celery"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"

@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/klippa-app/keda-celery-scaler/celery"
-	"github.com/klippa-app/keda-celery-scaler/workers"
+	"github.com/DiegoHinA/keda-celery-scaler/celery"
+	"github.com/DiegoHinA/keda-celery-scaler/workers"
 
 	"github.com/go-redis/redis/v8"
 	log "github.com/sirupsen/logrus"

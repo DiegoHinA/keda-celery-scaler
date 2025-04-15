@@ -3,9 +3,9 @@
 [![Build Status][build-status]][build-url]
 [![Docker](https://img.shields.io/docker/cloud/build/jerbob92/keda-celery-scaler?label=Docker&style=flat)](https://hub.docker.com/r/jerbob92/keda-celery-scaler/builds)
 
-[build-url]:https://github.com/klippa-app/keda-celery-scaler/actions
+[build-url]:https://github.com/DiegoHinA/keda-celery-scaler/actions
 
-[build-status]:https://github.com/klippa-app/keda-celery-scaler/workflows/go/badge.svg
+[build-status]:https://github.com/DiegoHinA/keda-celery-scaler/workflows/go/badge.svg
 
 An [External Scaler](https://keda.sh/docs/2.9/concepts/external-scalers/) for KEDA.
 
