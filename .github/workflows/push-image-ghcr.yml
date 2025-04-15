@@ -43,5 +43,4 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/diegohina:latest
             ${{ env.REGISTRY }}/diegohina:${{ github.ref_name }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+
